@@ -7,6 +7,12 @@ const { validateToken } = require('../middlewares/AuthMiddleware');
 
 const {sign} = require('jsonwebtoken');
 
+// Handling crashes
+process.on('uncaughtException', function (err) {
+    console.error(err);
+    console.log("Node NOT Exiting...");
+  });
+
 // Making post request for registration (username and password)
 router.post('/', async (req, res) => {
     const {username, password} = req.body;
